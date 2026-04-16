@@ -35,7 +35,7 @@ constructor(
       if (isLocalHost) {
         return 'http://localhost:3003';
       }
-      return 'https://api.meteo-kaz.kz:3003';
+      return 'https://meteo-q91g8fwlu-asikaslanasdfghjkl-3241s-projects.vercel.app';
     }
 
     loadForecast() {
