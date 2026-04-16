@@ -29,12 +29,20 @@ constructor(
       this.loadForecast();
     }
 
+    private getApiUrl(): string {
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return 'http://localhost:3003';
+      }
+      return 'https://api.meteo-kaz.kz:3003';
+    }
+
     loadForecast() {
       this.loading = true;
       this.error = '';
 
       // Получение данных с backend API
-      this.http.get('http://localhost:3003/api/flood-data').subscribe({
+      const apiUrl = `${this.getApiUrl()}/api/flood-data`;
+      this.http.get(apiUrl).subscribe({
         next: (data: any) => {
           this.forecastData = {
             regionId: this.regionId || '1',
