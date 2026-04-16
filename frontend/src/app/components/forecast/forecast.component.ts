@@ -30,7 +30,9 @@ constructor(
     }
 
     private getApiUrl(): string {
-      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      const host = window.location.hostname;
+      const isLocalHost = host === 'localhost' || host === '127.0.0.1' || host === '0.0.0.0' || host.startsWith('192.168.') || host.startsWith('10.') || host.startsWith('172.');
+      if (isLocalHost) {
         return 'http://localhost:3003';
       }
       return 'https://api.meteo-kaz.kz:3003';
