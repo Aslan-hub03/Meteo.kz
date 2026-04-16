@@ -31,6 +31,9 @@ jobs:
         cd frontend
         npm run build -- --configuration production --base-href="/Meteo.kz/"
 
+    - name: Copy .nojekyll
+      run: cp .nojekyll ./frontend/dist/kazproject-frontend/
+
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       uses: peaceiris/actions-gh-pages@v3
