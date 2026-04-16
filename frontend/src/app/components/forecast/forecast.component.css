@@ -1,0 +1,183 @@
+.live-weather-section {
+  margin-top: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8faff 0%, #e8f2ff 100%);
+  border-radius: 16px;
+  border: 1px solid #d3e4ff;
+}
+
+.live-weather-section h3 {
+  color: #1e5490;
+  margin-bottom: 20px;
+  font-size: 1.4em;
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.weather-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(30, 84, 143, 0.1);
+  border: 1px solid #e8f2ff;
+}
+
+.weather-card h4 {
+  margin: 0 0 12px 0;
+  color: #102a4c;
+  font-size: 1.1em;
+}
+
+.weather-info p {
+  margin: 6px 0;
+  color: #3e556f;
+  font-size: 0.95em;
+}
+
+.weather-card .source {
+  display: block;
+  margin-top: 12px;
+  color: #6b7c93;
+  font-size: 0.85em;
+  font-style: italic;
+}
+
+.language-switcher {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.lang-btn {
+  padding: 10px 20px;
+  margin: 0 6px;
+  border: 1px solid #d3e4ff;
+  background: #f7faff;
+  cursor: pointer;
+  border-radius: 999px;
+  color: #23456d;
+  font-weight: 600;
+}
+
+.lang-btn.active {
+  background: #2f80ed;
+  color: white;
+  border-color: transparent;
+}
+
+.forecast-container h1 {
+  margin-bottom: 18px;
+  color: #102a4c;
+}
+
+.forecast-details {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.forecast-details h2,
+.forecast-details p {
+  margin: 0;
+}
+
+.forecast-details p {
+  line-height: 1.9;
+  color: #3e556f;
+}
+
+.real-data-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #2f80ed;
+}
+
+.real-data-section h3 {
+  color: #102a4c;
+  margin-bottom: 20px;
+}
+
+.mchs-data, .kazhydromet-data {
+  margin-bottom: 20px;
+}
+
+.mchs-data h4, .kazhydromet-data h4 {
+  color: #2f80ed;
+  margin-bottom: 10px;
+}
+
+.real-data-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.real-data-section li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.real-data-section li:last-child {
+  border-bottom: none;
+}
+
+.real-data-section a {
+  color: #2f80ed;
+  text-decoration: none;
+}
+
+.real-data-section a:hover {
+  text-decoration: underline;
+}
+
+.timestamp {
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-top: 15px;
+}
+
+.demo-note {
+  font-size: 0.9em;
+  color: #856404;
+  background-color: #fff3cd;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 10px;
+  border: 1px solid #ffeaa7;
+}
+
+.source-block {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: #f5f8ff;
+  border: 1px solid rgba(47, 128, 237, 0.12);
+}
+
+.source-block h3 {
+  margin-top: 0;
+  color: #1f3d72;
+}
+
+.source-block ul {
+  padding-left: 18px;
+  margin: 12px 0 0;
+}
+
+.source-block li {
+  margin-bottom: 10px;
+}
+
+.source-block a {
+  color: #2f80ed;
+}
+
+.error {
+  color: #de3a4a;
+  font-weight: 700;
+}

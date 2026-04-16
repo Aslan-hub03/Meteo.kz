@@ -1,0 +1,20 @@
+ <div class="collection-container">
+    <h1>{{ 'COLLECTION_POINTS.TITLE' | translate }}</h1>
+
+    <div class="language-switcher">
+      <button (click)="switchLanguage('ru')" class="lang-btn" [class.active]="translate.currentLang === 'ru'">
+        RU
+      </button>
+      <button (click)="switchLanguage('kk')" class="lang-btn" [class.active]="translate.currentLang === 'kk'">
+        KZ
+      </button>
+    </div>
+
+    <div class="points-list">
+      <div *ngFor="let point of collectionPoints" class="point-item">
+        <h3>{{ point.name }}</h3>
+        <p><strong>{{ 'COLLECTION_POINTS.ADDRESS' | translate }}:</strong> {{ point.address }}</p>
+        <p><strong>{{ 'COLLECTION_POINTS.PHONE' | translate }}:</strong> {{ point.phone }}</p>
+      </div>
+    </div>
+  </div>

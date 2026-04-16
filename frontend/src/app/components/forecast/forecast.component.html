@@ -1,0 +1,93 @@
+<div class="forecast-container">
+    <h1>{{ 'FORECAST.TITLE' | translate }}</h1>
+
+    <div class="language-switcher">
+      <button (click)="switchLanguage('ru')" class="lang-btn" [class.active]="translate.currentLang === 'ru'">
+        RU
+      </button>
+      <button (click)="switchLanguage('kk')" class="lang-btn" [class.active]="translate.currentLang === 'kk'">
+        KZ
+      </button>
+    </div>
+
+    <div *ngIf="loading">{{ 'FORECAST.LOADING' | translate }}</div>
+
+    <div *ngIf="!loading && forecastData" class="forecast-details">
+      <h2>{{ 'FORECAST.REGION' | translate }}: {{ forecastData.regionId }}</h2>
+      <p><strong>{{ 'FORECAST.DATE' | translate }}:</strong> {{ forecastData.forecastDate }}</p>
+      <p><strong>{{ 'FORECAST.RISK_LEVEL' | translate }}:</strong> {{ ('FORECAST.RISK_' + forecastData.riskLevel) | translate }}</p>
+      <p><strong>{{ 'FORECAST.RECOMMENDATIONS' | translate }}:</strong> {{ forecastData.notes }}</p>
+
+      <div class="source-block">
+        <h3>{{ 'FORECAST.SOURCES_TITLE' | translate }}</h3>
+        <p>{{ 'FORECAST.SOURCES_DESCRIPTION' | translate }}</p>
+        <ul>
+          <li *ngFor="let source of forecastData.sources">
+            <a href="{{ source.url }}" target="_blank">{{ source.name }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Отображение реальных данных из API -->
+      <div *ngIf="forecastData?.realData" class="real-data-section">
+        <h3>{{ 'FORECAST.REAL_DATA_TITLE' | translate }}</h3>
+
+        <div *ngIf="forecastData.realData.mchs && forecastData.realData.mchs.length > 0" class="mchs-data">
+          <h4>{{ 'FORECAST.MCHS_WARNINGS' | translate }}</h4>
+          <ul>
+            <li *ngFor="let item of forecastData.realData.mchs">
+              <strong>{{ item.title }}</strong><br>
+              <small>{{ item.date }}</small><br>
+              <a href="{{ item.link }}" target="_blank">{{ 'FORECAST.DETAILS_LINK' | translate }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="forecastData.realData.kazhydromet && forecastData.realData.kazhydromet.length > 0" class="kazhydromet-data">
+          <h4>{{ 'FORECAST.KAZHYDROMET_FORECASTS' | translate }}</h4>
+          <ul>
+            <li *ngFor="let item of forecastData.realData.kazhydromet">
+              <strong>{{ item.region }}</strong>: {{ item.forecast }}
+            </li>
+          </ul>
+        </div>
+
+        <p class="timestamp">Обновлено: {{ forecastData.realData.timestamp | date:'dd.MM.yyyy HH:mm' }}</p>
+        <p *ngIf="forecastData.realData.note" class="demo-note">{{ 'FORECAST.DEMO_NOTICE' | translate }}</p>
+      </div>
+
+      <!-- Живые метеоданные по городам -->
+      <div *ngIf="liveWeatherData?.cities && liveWeatherData.cities.length > 0" class="live-weather-section">
+        <h3>{{ 'FORECAST.LIVE_CITY_WEATHER' | translate }}</h3>
+        <div class="weather-grid">
+          <div *ngFor="let city of liveWeatherData.cities" class="weather-card">
+            <h4>{{ city.city }}</h4>
+            <div class="weather-info">
+              <p *ngIf="city.temperature"><strong>{{ 'FORECAST.TEMPERATURE' | translate }}:</strong> {{ city.temperature }}</p>
+              <p *ngIf="city.wind"><strong>{{ 'FORECAST.WIND' | translate }}:</strong> {{ city.wind }}</p>
+              <p *ngIf="city.precipitation"><strong>{{ 'FORECAST.PRECIPITATION' | translate }}:</strong> {{ city.precipitation }}</p>
+            </div>
+            <small class="source">{{ city.source }}</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Живые метеоданные по регионам -->
+      <div *ngIf="liveWeatherData?.regions && liveWeatherData.regions.length > 0" class="live-weather-section">
+        <h3>{{ 'FORECAST.LIVE_REGIONAL_WEATHER' | translate }}</h3>
+        <div class="weather-grid">
+          <div *ngFor="let region of liveWeatherData.regions" class="weather-card">
+            <h4>{{ region.region }}</h4>
+            <div class="weather-info">
+              <p>{{ region.forecast }}</p>
+            </div>
+            <small class="source">{{ region.source }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="error">
+      {{ 'FORECAST.ERROR' | translate }}: {{ error }}
+    </div>
+  </div>
